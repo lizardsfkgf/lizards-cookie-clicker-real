@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker Clone</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: #f8e8c8; }
+        #cookie { width: 200px; cursor: pointer; margin: 20px; }
+        #counter { font-size: 30px; font-weight: bold; margin-top: 20px; }
+        .upgrade { display: block; margin: 10px auto; padding: 15px; font-size: 18px; cursor: pointer; width: 300px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cookie Clicker Clone</h1>
+        <img id="cookie" src="https://upload.wikimedia.org/wikipedia/commons/6/64/Oreo_cookie.jpg" alt="Cookie">
+        <div id="counter">Cookies: 0</div>
+        <button class="upgrade" onclick="buyCursor()">Buy Cursor (10 Cookies) - CPS: 1</button>
+        <button class="upgrade" onclick="buyGrandma()">Buy Grandma (100 Cookies) - CPS: 10</button>
+        <button class="upgrade" onclick="buyFactory()">Buy Factory (1000 Cookies) - CPS: 50</button>
+        <button class="upgrade" onclick="buyMine()">Buy Mine (5000 Cookies) - CPS: 200</button>
+    </div>
+    
+    <script>
+        let cookies = 0;
+        let cps = 0;
+
+        function updateCounter() {
+            document.getElementById('counter').textContent = `Cookies: ${cookies} (CPS: ${cps})`;
+        }
+
+        document.getElementById('cookie').addEventListener('click', function() {
+            cookies++;
+            updateCounter();
+        });
+
+        function buyCursor() {
+            if (cookies >= 10) {
+                cookies -= 10;
+                cps += 1;
+                updateCounter();
+            }
+        }
+
+        function buyGrandma() {
+            if (cookies >= 100) {
+                cookies -= 100;
+                cps += 10;
+                updateCounter();
+            }
+        }
+
+        function buyFactory() {
+            if (cookies >= 1000) {
+                cookies -= 1000;
+                cps += 50;
+                updateCounter();
+            }
+        }
+
+        function buyMine() {
+            if (cookies >= 5000) {
+                cookies -= 5000;
+                cps += 200;
+                updateCounter();
+            }
+        }
+
+        setInterval(function() {
+            cookies += cps;
+            updateCounter();
+        }, 1000);
+    </script>
+</body>
+</html>
